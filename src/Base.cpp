@@ -42,6 +42,12 @@ void Base::init(const std::string& name, size_t x, size_t y, size_t width, size_
 	logger.log(Logger::Type::DEBUG, "VERSION:   ", glGetString(GL_VERSION));
 	logger.log(Logger::Type::DEBUG, "OS:        ", getOS().c_str());
 
+    if(m_screens.size() < 1){
+        logger.log(Logger::Type::ERROR, "No screens were initialized for the engine! Tell your local developer that its a problem!", "Error 44");
+		SDL_Quit();
+		exit(44);
+    }
+    
 	for(Screen* screen : m_screens){
 		screen->init();
 	}
@@ -86,6 +92,7 @@ void Base::gameLoop(){
 		update();
 		render();
 	}
+	destroy();
 }
 
 void Base::update(){

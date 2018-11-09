@@ -50,8 +50,8 @@ public:
 
 		std::stringstream sstr;
 
-		m_file << currtime << " : [" << m_class << ']' << " - (" << getTypeStr(type) << "): " << first;
-		std::cout << currtime << " : [" << m_class << ']' << " - (" << getTypeStr(type) << "): " << first;
+		m_file << currtime << " : [" << m_class << ']' << " - (" << getTypeStr(type) << "): " << first << ' ';
+		std::cout << currtime << " : [" << m_class << ']' << " - (" << getTypeStr(type) << "): " << first << ' ';
 	
 		logObj(args...);
 		

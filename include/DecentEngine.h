@@ -16,16 +16,14 @@
 
 namespace DecentEngine {
 	
-	#define VERSION "0.1.0"
+	#define VERSION "0.1.2"
 
-	Logger baseLogger("DecentEngine");
+    extern Logger baseLogger;
 
 	/**
 	 * @brief Logs the version of the engine that the game is using
 	 */
-	void engine_init() {
-		baseLogger.log(Logger::Type::INFO, "Using decent-engine version", VERSION);
-	}
+    extern void engine_init();
 
 };
 
