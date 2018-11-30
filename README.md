@@ -33,4 +33,4 @@ Finally, you must call DecentEngine::Base::init with the window name, coordinate
 
 ## License
 
-The project is licensed under the GNU General Public License v3.0. see [LICENSE](LICENSE) for more details
+The project is licensed under the Apache License 2.0. see [LICENSE](LICENSE) for more details
