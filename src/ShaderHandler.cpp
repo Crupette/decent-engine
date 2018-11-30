@@ -6,6 +6,8 @@
 
 namespace DecentEngine {
 
+Logger ShaderHandler::m_logger("ShaderHandler");
+
 ShaderHandler::~ShaderHandler(){
 	if(m_program != 0) glDeleteProgram(m_program);
 }
@@ -29,8 +31,7 @@ void ShaderHandler::buildProgram(){
 		std::vector<GLchar> errorLog(errorlen);
 		glGetProgramInfoLog(m_program, errorlen, &errorlen, &errorLog[0]);
 
-		//TODO: Add logger message with [ERROR] tag
-		printf("Failed to link program.\nError is as follows:\n%s\n", (char*)(&errorLog[0]));
+		m_logger.log(Logger::Type::ERROR, "Failed to link program.", (char*)(&errorLog[0]));
 		
 		glDeleteProgram(m_program);
 
@@ -63,8 +64,7 @@ void ShaderHandler::addAttribute(const std::string& name){
 GLuint ShaderHandler::getUniformLocation(const std::string& name){
 	GLint location = glGetUniformLocation(m_program, name.c_str());
 	if(location == -1){
-		//TODO: Add logger message with [ERROR] tag
-		printf("Failed to retrieve uniform location.\nError is as follows:\nUniform not found\n");
+		m_logger.log(Logger::Type::ERROR, "Failed to retrieve uniform location: Uniform", name, "Not found");
 		SDL_Quit();
 		exit(4);
 	}
@@ -84,8 +84,7 @@ std::pair<GLuint, GLenum> ShaderHandler::compileShader(GLenum type, const std::s
 
 	std::ifstream file(path, std::ios::binary);
 	if(file.fail()){
-		//TODO: Add logger message with [ERROR] tag
-		printf("Failed to compile shader.\nError is as follows: 404\n");
+		m_logger.log(Logger::Type::ERROR, "Failed to compile shader. Shader", path, "Not found");
 		SDL_Quit();
 		exit(404);
 	}
@@ -117,7 +116,7 @@ std::pair<GLuint, GLenum> ShaderHandler::compileShader(GLenum type, const std::s
 		glGetShaderInfoLog(id, errorlen, &errorlen, &errorLog[0]);
 
 		//TODO: Add logger message with [ERROR] tag
-		printf("Failed to compile shader.\nError is as follows:\n%s\n", (char*)(&errorLog[0]));
+		m_logger.log(Logger::Type::ERROR, "Failed to compile shader.", (char*)(&errorLog[0]));
 		
 		glDeleteShader(id);
 

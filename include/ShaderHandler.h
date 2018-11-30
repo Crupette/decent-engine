@@ -7,9 +7,13 @@
 #include <string>
 #include <vector>
 
+#include "Logger.h"
+
 namespace DecentEngine {
 
 class ShaderHandler {
+	static Logger m_logger;
+
 	GLuint m_program = 0;
 	GLuint m_numAttributes = 0;
 

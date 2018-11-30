@@ -1,4 +1,4 @@
-#ifndef SPRITE_H
+gifndef SPRITE_H
 #define SPRITE_H
 
 #include <string>

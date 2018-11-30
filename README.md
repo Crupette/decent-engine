@@ -13,7 +13,7 @@ $apt install build-essential libglew-dev libsdl2-dev libsdl2-ttf-dev libglm-dev
 
 ## Building
 
-Just run the make file with 'build' as an argument. The engine binary will be placed in the /bin/ folder
+Just run the make file with 'build' as an argument. The engine binary will be placed in the /out/ folder. Good luck
 
 ```
 make build
