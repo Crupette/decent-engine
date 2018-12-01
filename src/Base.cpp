@@ -1,18 +1,21 @@
 #include "Base.h"
 #include "InputManager.h"
+#include "FPSRegulator.h"
 
 namespace DecentEngine {
 
 Window Base::m_mainWindow;
 	
 std::vector<Screen*> Base::m_screens;
-size_t Base::m_screenIndex;	
+size_t Base::m_screenIndex;
+
+uint32_t Base::m_maxFPS;
 	
 GameState Base::m_state = GameState::RUN;
 
 Logger Base::logger("Base");
 
-void Base::init(const std::string& name, size_t x, size_t y, size_t width, size_t height, uint32_t flags){
+void Base::init(const std::string& name, size_t x, size_t y, size_t width, size_t height, uint32_t maxFPS, uint32_t flags){
 	engine_init();	
 	
 	SDL_Init(SDL_INIT_EVERYTHING);
@@ -51,6 +54,8 @@ void Base::init(const std::string& name, size_t x, size_t y, size_t width, size_
 	for(Screen* screen : m_screens){
 		screen->init();
 	}
+
+	m_maxFPS = maxFPS;
 
 	gameLoop();
 }
@@ -91,6 +96,7 @@ void Base::gameLoop(){
 		processInputs();
 		update();
 		render();
+		FPSRegulator::regulate(m_maxFPS);
 	}
 	destroy();
 }

@@ -11,6 +11,7 @@
 #include "DecentEngine.h"
 
 #include <vector>
+#include <cstdint>
 
 namespace DecentEngine {
 
@@ -21,6 +22,8 @@ class Base{
 	
 	static std::vector<Screen*> m_screens;
 	static size_t m_screenIndex;	
+
+	static uint32_t m_maxFPS;
 	
 	static GameState m_state;
 
@@ -50,9 +53,10 @@ public:
 	 * @param y Y coordinate of the main window
 	 * @param width Width of the main window
 	 * @param height Height of the main window
+	 * @param maxFPS Maximum FPS the window renders at. Can be changed later
 	 * @param flags Additional flags for the main window
 	 */
-	static void init(const std::string& name, size_t x, size_t y, size_t width, size_t height, uint32_t flags);
+	static void init(const std::string& name, size_t x, size_t y, size_t width, size_t height, uint32_t maxFPS, uint32_t flags);
 	/**
 	 * @brief Destroys all objects and screens.
 	 */
@@ -91,6 +95,8 @@ public:
 	static bool wasScreenResized() {return m_mainWindow.wasResized();}
 
 	static Window* getWindow() {return &m_mainWindow; }
+
+	static void setMaxFPS(uint32_t max) { m_maxFPS = max; }
 };
 
 std::string getOS();

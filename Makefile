@@ -7,26 +7,24 @@ BINDIR		:= bin/
 SRCFILES	:= $(wildcard $(SRCDIR)*.cpp)
 OBJFILES	:= $(patsubst $(SRCDIR)%.cpp, $(OBJDIR)%.o, $(SRCFILES))
 
-CC		:= g++
+CC		:= gcc
 AR		:= ar
 LIBS		:= -lSDL2 -lGLEW -lGL -lSDL2_ttf
-CPPFLAGS	:= -Wall -Werror -std=c++17 -I $(INCDIR)
+CPPFLAGS	:= -Wall -std=c++17 -I $(INCDIR)
 
-OUT		:= Decent-Engine.a
+OUT		:= libdecent-engine.a
 
 .PHONY: build clean
 
 build: $(OBJFILES) | $(BINDIR) $(OUTDIR)
 	@echo Building engine
-	@$(AR) rcs $(BINDIR)$(OUT) $^
+	@$(AR) crf $(BINDIR)$(OUT) $^
 	@echo Liked obj files to $(BINDIR)$(OUT)
 clean:
-	@echo Cleaning temporary and built files
 	@rm -rf $(OBJDIR)/*
 	@rm -rf $(BINDIR)/*
 
-$(OBJDIR)%.o : $(SRCDIR)%.cpp $(OBJDIR)
-	@echo Compiling $< into $@
+$(OBJDIR)%.o : $(SRCDIR)%.cpp | $(OBJDIR)
 	$(CC) $(CPPFLAGS) $(LIBS) -c $< -o $@
 	
 $(OBJDIR):

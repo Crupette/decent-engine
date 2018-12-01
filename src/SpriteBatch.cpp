@@ -51,6 +51,9 @@ void SpriteBatch::addSprite(const Sprite* sprite) {
 
 void SpriteBatch::begin(){
 	m_batches.clear();
+
+	m_glyphs.clear();
+	ptr_glyphs.clear();
 }
 
 void SpriteBatch::end(){
@@ -109,7 +112,7 @@ void SpriteBatch::createBatches(){
 		colors.insert(colors.end(), ptr_glyphs[i]->colors.begin(), ptr_glyphs[i]->colors.end());
 
 		offset += 6;
-		m_batches.back().numVertices = 6;
+		m_batches.back().numVertices += 6;
 	}
 
 	glBindBuffer(GL_ARRAY_BUFFER, m_vbo[0]);
