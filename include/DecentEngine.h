@@ -6,7 +6,7 @@
  * By:			Jon Santmyer
  * 			jonsantmyer@gmail.com
  *
- * Used Compiler:	gcc
+ * Used Compiler:	gcc -std=c++17
 */
 
 #ifndef DECENTENGINE_H
@@ -16,7 +16,7 @@
 
 namespace DecentEngine {
 	
-	#define VERSION "0.1.7"
+	#define VERSION "0.4.3"
 
     extern Logger baseLogger;
 
@@ -24,6 +24,7 @@ namespace DecentEngine {
 	 * @brief Logs the version of the engine that the game is using
 	 */
     extern void engine_init();
+    extern void engine_postgl_init();
 
 };
 

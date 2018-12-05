@@ -36,8 +36,9 @@ public:
 	void destroy();
 
 	void setText(const std::string& text, const glm::vec2& position, const glm::vec2& scale, const glm::uvec4& color);
-
 	void render();
+
+	void renderText(const std::string& text, const glm::vec2& position, const glm::vec2& scale, const glm::uvec4& color);
 
 private:
 	TTF_Font* m_font;

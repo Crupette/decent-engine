@@ -1,6 +1,8 @@
 #include "Base.h"
 #include "InputManager.h"
 #include "FPSRegulator.h"
+#include "RendererDefault.h"
+#include "GuiManager.h"
 
 namespace DecentEngine {
 
@@ -45,17 +47,22 @@ void Base::init(const std::string& name, size_t x, size_t y, size_t width, size_
 	logger.log(Logger::Type::DEBUG, "VERSION:   ", glGetString(GL_VERSION));
 	logger.log(Logger::Type::DEBUG, "OS:        ", getOS().c_str());
 
+	engine_postgl_init();
+
     if(m_screens.size() < 1){
         logger.log(Logger::Type::ERROR, "No screens were initialized for the engine! Tell your local developer that its a problem!", "Error 44");
 		SDL_Quit();
 		exit(44);
     }
     
+	GuiManager::init();
+
 	for(Screen* screen : m_screens){
 		screen->init();
 	}
 
 	m_maxFPS = maxFPS;
+	RendererDefault::init();
 
 	gameLoop();
 }
@@ -64,7 +71,9 @@ void Base::destroy(){
 	for(Screen* screen : m_screens){
 		screen->destroy();
 		delete screen;
-	}	
+	}
+	RendererDefault::destroy();
+	RendererDefault::destroy();
 }
 
 void Base::addScreen(Screen* screen){
@@ -103,6 +112,7 @@ void Base::gameLoop(){
 
 void Base::update(){
 	m_screens[m_screenIndex]->update();
+	GuiManager::update();
 }
 
 void Base::processInputs(){
@@ -146,6 +156,7 @@ void Base::render(){
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	m_screens[m_screenIndex]->render();
+	GuiManager::render();
 
 	m_mainWindow.swapBuffer();
 }

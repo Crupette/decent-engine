@@ -111,5 +111,11 @@ void FontRenderer::render()
 	m_batch.renderBatches();
 }
 
+void FontRenderer::renderText(const std::string & text, const glm::vec2 & position, const glm::vec2 & scale, const glm::uvec4& color) {
+	setText(text, position, scale, color);
+	render();
+}
+
+
 }
 

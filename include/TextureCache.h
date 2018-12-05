@@ -29,6 +29,13 @@ public:
 	 * @return texture ID (OpenGL object)
 	 */
 	static GLuint getTexture(const std::string& filePath);
+	/**
+	 * @brief Loads the texture into memory from the pre-given data
+	 *
+	 * @param data Its a basic_string of unsigned chars because its more efficient somehow.
+	 * @param name Name of the texture
+	 */
+	static void loadTextureFromData(const std::basic_string<unsigned char>& data, const std::string& name);
 };
 
 }
