@@ -17,6 +17,8 @@ class Camera {
 	glm::mat4 m_orthoMatrix;
 	glm::mat4 m_cameraMatrix;
 
+	glm::uvec2 m_lastWindowSize;
+	
 	bool m_needsUpdate;
 public:
 	Camera();
@@ -44,6 +46,15 @@ public:
 	 * @param shader Shader program to use
 	 */
 	void loadUniform(ShaderHandler* shader);
+
+	/**
+	 * @brief Returns wether the bounds are within the camera's vision
+	 *
+	 * @param bounds bounds of the object
+	 *
+	 * @return wether the object is in the cameras vision
+	 */
+	bool boundsInFrustrum(const glm::vec4& bounds);
 
 	void setPosition(const glm::vec2& position) { m_position = position; m_needsUpdate = true; }
 	void setScale(float scale) { m_scale = scale; m_needsUpdate = true; }

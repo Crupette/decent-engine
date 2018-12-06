@@ -32,10 +32,12 @@ public:
 	 * @param camera Camera passes to the shaders
 	 */
 	static void begin(Camera& camera);
+	static void beginShader(Camera& camera);
 	/**
 	 * @brief Ends the rendering process and actually draws the glyphs
 	 */
 	static void end();
+	static void endShader();
 	/**
 	 * @brief Adds object and possibly bounding boxes to the SpriteBatch. Call this after the begin method
 	 *

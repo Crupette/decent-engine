@@ -62,7 +62,7 @@ void SpriteBatch::end(){
 		ptr_glyphs[i] = &m_glyphs[i];
 	}
 
-	std::sort(ptr_glyphs.begin(), ptr_glyphs.end(), [](Glyph* a, Glyph* b) {return a->layer < b->layer; });
+	std::sort(ptr_glyphs.begin(), ptr_glyphs.end(), [](Glyph* a, Glyph* b) {return a->texture < b->texture; });
 
 	createBatches();
 

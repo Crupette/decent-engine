@@ -35,12 +35,21 @@ void RendererDefault::begin(Camera& camera){
 	m_batch.begin();
 }
 
+void RendererDefault::beginShader(Camera& camera){
+	m_shader->use();
+	camera.loadUniform(m_shader);
+}
+
 void RendererDefault::end(){
 	m_batch.end();
 	m_batch.renderBatches();
 
 	m_shader->unuse();
 
+}
+
+void RendererDefault::endShader(){
+	m_shader->unuse();
 }
 
 void RendererDefault::addObject(Object* object, bool renderBB){

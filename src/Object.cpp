@@ -31,4 +31,12 @@ void Object::update(float resistanceX, float resistanceY) {
 	aabb.update(sprite.position, sprite.size, sprite.rotation);
 }
 
+void Object::testUpdate(float resistanceX, float resistanceY){
+	glm::vec2 spritepos = sprite.position;
+	spritepos += m_velocity * glm::vec2(FPSRegulator::getDelta());
+
+	aabb.update(sprite.position, sprite.size, sprite.rotation);
+
+}
+
 }

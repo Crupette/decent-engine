@@ -44,6 +44,7 @@ public:
 	 * @param resistanceY Resistance on the Y axis
 	 */
 	void update(float resistanceX = 1.f, float resistanceY = 1.f);
+	void testUpdate(float resistanceX = 1.f, float resistanceY = 1.f);
 
 	/**
 	 * @brief Setters
