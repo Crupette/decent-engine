@@ -14,10 +14,12 @@ namespace DecentEngine {
 class AABB {
 	glm::vec4 m_bounds;
 	glm::vec2 m_center;
+
+	bool m_circular;
 public:
 	AABB();
-	AABB(const glm::vec2& position, const glm::vec2& size, float rotation);
-	AABB(const glm::vec4& bounds, float rotation);
+	AABB(const glm::vec2& position, const glm::vec2& size, float rotation, bool circular = false);
+	AABB(const glm::vec4& bounds, float rotation, bool circular = false);
 	~AABB() {}
 
 	/**
@@ -46,6 +48,14 @@ public:
 
 	glm::vec4 getBounds() const {return m_bounds; }
 	glm::vec2 getCenter() const {return m_center; }
+	bool isCircular() const { return m_circular; }
+
+	/**
+	 * @brief Sets if the AABB is to respond as if its a circle
+	 *
+	 * @param circular if the object is circular
+	 */
+	void setCircular(bool circular) { m_circular = circular; }
 
 	/**
 	 * @brief Returns true if the two AABB's are colliding
@@ -55,6 +65,7 @@ public:
 	 *
 	 * @return If they are colliding
 	 */
+	static bool checkRect(const AABB& a, const AABB& b);
 	static bool check(const AABB& a, const AABB& b);		
 };
 
