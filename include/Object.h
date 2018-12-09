@@ -46,6 +46,28 @@ public:
 	void update(float resistanceX = 1.f, float resistanceY = 1.f);
 	void testUpdate(float resistanceX = 1.f, float resistanceY = 1.f);
 
+    	/**
+	 * @brief Gets the collided side(s) and puts the results into the passed arguments
+	 *
+	 * @param other other object to collide with
+	 * @param collideTop
+	 * @param collideRight
+	 * @param collideBottom
+	 * @param collideLeft
+	 */
+	void getCollisionSide(AABB& other, bool& collideTop, bool& collideRight, bool& collideBottom, bool& collideLeft);
+	void getCollisionSideFromSlope(double velocitySlope, double cornerSlope, bool& collideTop, bool& collideRight, bool& collideBottom, bool& collideLeft);
+	/**
+	 * @brief Corrects the position of the object based on the collided side(s) and the collided object
+	 *
+	 * @param other other object to collide with
+	 * @param collideTop
+	 * @param collideRight
+	 * @param collideBottom
+	 * @param collideLeft
+	 */
+	void correctPositionFromCollision(AABB& other, bool& collideTop, bool& collideRight, bool& collideBottom, bool& collideLeft);
+    
 	/**
 	 * @brief Setters
 	 */

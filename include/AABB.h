@@ -66,7 +66,7 @@ public:
 	 * @return If they are colliding
 	 */
 	static bool checkRect(const AABB& a, const AABB& b);
-	static bool check(const AABB& a, const AABB& b);		
+	static bool check(const AABB& a, const AABB& b);
 };
 
 }
