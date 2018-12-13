@@ -9,7 +9,7 @@ OBJFILES	:= $(patsubst $(SRCDIR)%.cpp, $(OBJDIR)%.o, $(SRCFILES))
 
 CC		:= gcc
 AR		:= ar
-LIBS		:= -lSDL2 -lGLEW -lGL -lSDL2_ttf -lm
+LIBS		:= -lSDL2 -lGLEW -lGL -lSDL2_ttf -lm -lSDL2_mixer
 CPPFLAGS	:= -Wall -std=c++17 -I $(INCDIR)
 
 OUT		:= libdecent-engine.a
