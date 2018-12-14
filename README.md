@@ -8,7 +8,7 @@ You need build-essentials and make. You also need libglew-dev, libsdl2-dev, libs
 
 ### Debian
 ```
-$apt install build-essential libglew-dev libsdl2-dev libsdl2-ttf-dev libglm-dev
+$apt install build-essential libglew-dev libsdl2-dev libsdl2-ttf-dev libglm-dev libsdl2-mixer-dev
 ```
 
 ## Building
