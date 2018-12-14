@@ -41,18 +41,21 @@ void TextureCache::loadTextureFromData(const std::basic_string<unsigned char>& d
 	m_textures.emplace(name, textureId);
 }
 
-GLuint TextureCache::loadTexture(const std::string& filePath){
-	GLuint textureId;
-
-	unsigned long width = 0;
-	unsigned long height = 0;
-
+void TextureCache::getPixelsFromPNG(const std::string& filePath, std::vector<unsigned char>& data, size_t& width, size_t& height){
 	std::vector<unsigned char> fileData;
-	std::vector<unsigned char> textureData;
 
 	FileManager::dumpFile(filePath, fileData);
 
-	decodePNG(textureData, width, height, fileData.data(), fileData.size());
+	decodePNG(data, width, height, fileData.data(), fileData.size());
+}
+
+GLuint TextureCache::loadTexture(const std::string& filePath){
+	GLuint textureId;
+	unsigned long width = 0;
+	unsigned long height = 0;
+	std::vector<unsigned char> textureData;
+
+	getPixelsFromPNG(filePath, textureData, width, height);
 
 	glGenTextures(1, &textureId);
 	glBindTexture(GL_TEXTURE_2D, textureId);

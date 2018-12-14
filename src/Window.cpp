@@ -1,4 +1,7 @@
 #include "Window.h"
+#include "picoPNG.h"
+
+#include "TextureCache.h"
 
 namespace DecentEngine {
 
@@ -28,6 +31,16 @@ void Window::init(const std::string& title, size_t x, size_t y, size_t width, si
 void Window::swapBuffer(){
 	SDL_GL_SwapWindow(m_window);
 	m_resized = false;
+}
+
+void Window::setIcon(const std::string& filePath){
+	std::vector<unsigned char> pixelData;
+	size_t width = 0, height = 0;
+	TextureCache::getPixelsFromPNG(filePath, pixelData, width, height);
+
+	SDL_Surface* surface = SDL_CreateRGBSurfaceFrom(&pixelData[0], width, height, 32, 4 * width, 0xff000000, 0x00ff0000, 0x0000ff00, 0x000000ff);
+	SDL_SetWindowIcon(m_window, surface);
+	SDL_FreeSurface(surface);
 }
 
 void Window::resizeEvent(size_t width, size_t height){

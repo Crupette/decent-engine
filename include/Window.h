@@ -31,7 +31,6 @@ public:
 	 * @param flags Additional flags (eg SDL_WINDOW_FULLSCREEN)
 	 */
 	void init(const std::string& title, size_t x, size_t y, size_t width, size_t height, uint32_t flags);
-
 	/**
 	 * @brief Swaps the window buffer.
 	 */
@@ -43,7 +42,12 @@ public:
 	 * @param height Height of the new size
 	 */
 	void resizeEvent(size_t width, size_t height);
-
+	/**
+	 * @brief Sets the window's icon
+	 *
+	 * @param filePath path to the .png file
+	 */
+	void setIcon(const std::string& filePath);
 	/**
 	 * @brief Returns whether the window was resized
 	 */

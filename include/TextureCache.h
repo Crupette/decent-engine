@@ -5,6 +5,7 @@
 
 #include <unordered_map>
 #include <string>
+#include <vector>
 
 namespace DecentEngine {
 
@@ -36,6 +37,13 @@ public:
 	 * @param name Name of the texture
 	 */
 	static void loadTextureFromData(const std::basic_string<unsigned char>& data, const std::string& name);
+	/**
+	 * @brief Loads the texture pixel data into the passed vector
+	 *
+	 * @param filePath path to the PNG
+	 * @param data vector to pass into
+	 */
+	static void getPixelsFromPNG(const std::string& filePath, std::vector<unsigned char>& data, size_t& width, size_t& height);
 };
 
 }
