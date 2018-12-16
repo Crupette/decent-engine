@@ -14,11 +14,13 @@
 #include <unordered_map>
 
 #include "SpriteBatch.h"
+#include "Logger.h"
 
 namespace DecentEngine {
 
 class FontRenderer
 {
+	static Logger m_logger;
 public:
 
 	struct Glyph {

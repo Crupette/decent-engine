@@ -3,6 +3,8 @@
 
 namespace DecentEngine {
 
+Logger FontRenderer::m_logger("FontRenderer");
+
 FontRenderer::FontRenderer() : m_font(nullptr)
 {
 }
@@ -19,14 +21,14 @@ void FontRenderer::init(const std::string& path, unsigned int size)
 	if (!TTF_WasInit()) {
 		int errorCode = TTF_Init();
 		if (errorCode == -1) {
-			//fatalError("FontRenderer: TTF Failed to initialize. error:", TTF_GetError());
+			m_logger.log(Logger::Type::ERROR, "FontRenderer: TTF Failed to initialize. error:", TTF_GetError());
 			exit(-1);
 		}
 	}
 
 	m_font = TTF_OpenFont(path.c_str(), size);
 	if (!m_font) {
-		//fatalError("FontRenderer: TTF Failed to open file:", TTF_GetError());
+		m_logger.log(Logger::Type::ERROR, "FontRenderer: TTF Failed to open file:", TTF_GetError());
 		exit(-1);
 	}
 
@@ -94,7 +96,7 @@ void FontRenderer::setText(const std::string & text, const glm::vec2 & position,
 
 		auto it = m_allGlyphs.find(c);
 		if (it == m_allGlyphs.end()) {
-			printf("FontRenderer: Failed to render character %c: Character is not present in font\n", c);
+			m_logger.log(Logger::Type::WARN, "FontRenderer: Failed to render character", c, ": Character is not present in font!");
 			continue;
 		}
 

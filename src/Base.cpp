@@ -3,18 +3,15 @@
 #include "FPSRegulator.h"
 #include "RendererDefault.h"
 #include "GuiManager.h"
+#include "ParticleEngine.h"
 
 namespace DecentEngine {
 
 Window Base::m_mainWindow;
-	
 std::vector<Screen*> Base::m_screens;
 size_t Base::m_screenIndex;
-
 uint32_t Base::m_maxFPS;
-	
 GameState Base::m_state = GameState::RUN;
-
 Logger Base::logger("Base");
 
 void Base::init(const std::string& name, size_t x, size_t y, size_t width, size_t height, uint32_t maxFPS, uint32_t flags){
@@ -63,7 +60,7 @@ void Base::init(const std::string& name, size_t x, size_t y, size_t width, size_
 
 	m_maxFPS = maxFPS;
 	RendererDefault::init();
-
+		
 	gameLoop();
 }
 
@@ -73,7 +70,7 @@ void Base::destroy(){
 		delete screen;
 	}
 	RendererDefault::destroy();
-	RendererDefault::destroy();
+	ParticleEngine::destroy();
 }
 
 void Base::addScreen(Screen* screen){
@@ -113,6 +110,7 @@ void Base::gameLoop(){
 void Base::update(){
 	m_screens[m_screenIndex]->update();
 	GuiManager::update();
+	ParticleEngine::update();
 }
 
 void Base::processInputs(){
@@ -157,6 +155,7 @@ void Base::render(){
 
 	m_screens[m_screenIndex]->render();
 	GuiManager::render();
+	ParticleEngine::render();
 
 	m_mainWindow.swapBuffer();
 }

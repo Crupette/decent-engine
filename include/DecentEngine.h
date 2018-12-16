@@ -16,7 +16,7 @@
 
 namespace DecentEngine {
 	
-	#define VERSION "0.8.1"
+	#define VERSION "0.9.1"
 
     extern Logger baseLogger;
 
