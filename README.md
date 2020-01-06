@@ -1,6 +1,6 @@
-# Decent Engine
+# Decent Engine Old
 
-A basic framework for most of my (future) projects. Refined over a month of almost continuous development and documentation. Will be worked on as new features are added.
+A basic my older projects. Refined over a month of almost continuous development and documentation.
 
 ## Getting Started
 
